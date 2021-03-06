@@ -12,7 +12,7 @@ import com.example.starlinetest.databinding.ItemCarCategoryBinding
 import com.example.starlinetest.domain.entity.Car
 import java.lang.IllegalArgumentException
 
-class CarsAdapter(private val list: MutableList<Car>?, private val listener: CarListener) :
+class CarsAdapter(private val list: List<Car>?,private val listener:CarListener) :
     RecyclerView.Adapter<ViewHolder<ViewDataBinding>>() {
 
     companion object {
@@ -26,7 +26,7 @@ class CarsAdapter(private val list: MutableList<Car>?, private val listener: Car
         if (holder.binding is ItemCarBinding) {
 
             holder.binding.item = item
-            holder.binding.listener = listener
+            holder.binding.listener=listener
 
         } else if (holder.binding is ItemCarCategoryBinding) {
 
@@ -63,15 +63,6 @@ class CarsAdapter(private val list: MutableList<Car>?, private val listener: Car
     }
 
     private fun isRootItem(item: Car?): Boolean = item?.parent == "root"
-
-    fun addItems(items: MutableList<Car>?) {
-
-        if (items != null) {
-            list?.addAll(items)
-            notifyItemRangeInserted(0, itemCount)
-        }
-
-    }
 
     override fun getItemViewType(position: Int): Int {
         val item = list?.get(position)

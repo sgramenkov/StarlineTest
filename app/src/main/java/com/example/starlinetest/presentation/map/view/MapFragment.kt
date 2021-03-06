@@ -1,5 +1,6 @@
 package com.example.starlinetest.presentation.map.view
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,19 +9,22 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import com.example.starlinetest.App
 import com.example.starlinetest.R
 import com.example.starlinetest.databinding.FragmentMapBinding
+import com.example.starlinetest.di.MapModule
 import com.example.starlinetest.presentation.map.viewmodel.MapViewModel
 import com.yandex.mapkit.Animation
 import com.yandex.mapkit.MapKitFactory
 import com.yandex.mapkit.geometry.Point
 import com.yandex.mapkit.map.CameraPosition
 import com.yandex.runtime.ui_view.ViewProvider
+import javax.inject.Inject
 
 class MapFragment : Fragment() {
 
-    private lateinit var mapViewModel: MapViewModel
+    @Inject
+    lateinit var mapViewModel: MapViewModel
 
     private lateinit var binding: FragmentMapBinding
 
@@ -29,8 +33,6 @@ class MapFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mapViewModel =
-            ViewModelProvider(this).get(MapViewModel::class.java)
 
         MapKitFactory.initialize(requireContext())
 
@@ -39,6 +41,12 @@ class MapFragment : Fragment() {
         setMapPoint()
 
         return binding.root
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val subComp = App.getBuilder().build().addModule(MapModule(this))
+        subComp.inject(this)
     }
 
     private fun setMapPoint() {
@@ -65,9 +73,9 @@ class MapFragment : Fragment() {
 
     }
 
-    fun getMapIcon(): View {
+    private fun getMapIcon(): View {
         return View(requireContext()).apply {
-            background = ContextCompat.getDrawable(requireContext(), R.drawable.car_map_icon)
+            background = ContextCompat.getDrawable(requireContext(), R.drawable.ic_car)
         }
     }
 

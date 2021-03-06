@@ -2,4 +2,5 @@
     <string name="app_name">StarlineTest</string>
     <string name="title_catalog">Catalog</string>
     <string name="title_dashboard">Map</string>
+    <string name="file_err_read">Error reading file</string>
 </resources>
