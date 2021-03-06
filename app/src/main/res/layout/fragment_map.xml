@@ -6,7 +6,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.map.view.MapFragment">
+        tools:context=".presentation.modules.map.view.MapFragment">
 
         <com.yandex.mapkit.mapview.MapView
             android:id="@+id/map_view"

@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/navigation_catalog"
-        android:name="com.example.starlinetest.presentation.cars.view.CarsFragment"
+        android:name="com.example.starlinetest.presentation.modules.cars.view.CarsFragment"
         android:label="@string/title_catalog"
         tools:layout="@layout/fragment_cars" />
 
     <fragment
         android:id="@+id/navigation_map"
-        android:name="com.example.starlinetest.presentation.map.view.MapFragment"
+        android:name="com.example.starlinetest.presentation.modules.map.view.MapFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_map" />
 

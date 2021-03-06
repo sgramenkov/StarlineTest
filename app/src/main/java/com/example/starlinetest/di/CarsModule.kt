@@ -1,17 +1,19 @@
 package com.example.starlinetest.di
 
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.example.starlinetest.presentation.cars.viewmodel.CarsViewModel
-import com.example.starlinetest.presentation.map.viewmodel.MapViewModel
+import android.app.Application
+import com.example.starlinetest.data.local.IMainRepo
+import com.example.starlinetest.data.local.CarsRepo
+import com.example.starlinetest.presentation.modules.cars.viewmodel.CarsVmFactory
 import dagger.Module
 import dagger.Provides
 
 @Module
-class CarsModule(val frag: Fragment) {
+class CarsModule(private val application: Application) {
 
     @Provides
-    fun provideCarsViewModel(): CarsViewModel =
-        ViewModelProvider(frag).get(CarsViewModel::class.java)
+    fun provideCarsViewModelFactory(repo: IMainRepo): CarsVmFactory = CarsVmFactory(application, repo)
+
+    @Provides
+    fun provideCarsRepo(): IMainRepo = CarsRepo()
 
 }

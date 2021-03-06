@@ -1,4 +1,4 @@
-package com.example.starlinetest.presentation.cars.adapter
+package com.example.starlinetest.presentation.modules.cars.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -10,10 +10,11 @@ import com.example.starlinetest.R
 import com.example.starlinetest.databinding.ItemCarBinding
 import com.example.starlinetest.databinding.ItemCarCategoryBinding
 import com.example.starlinetest.domain.entity.Car
+import com.example.starlinetest.presentation.base.BaseViewHolder
 import java.lang.IllegalArgumentException
 
-class CarsAdapter(private val list: List<Car>?,private val listener:CarListener) :
-    RecyclerView.Adapter<ViewHolder<ViewDataBinding>>() {
+class CarsAdapter(private val list: List<Car>?, private val listener: CarListener) :
+    RecyclerView.Adapter<BaseViewHolder<ViewDataBinding>>() {
 
     companion object {
         private const val STATE_CAR = 1
@@ -21,12 +22,13 @@ class CarsAdapter(private val list: List<Car>?,private val listener:CarListener)
     }
 
 
-    override fun onBindViewHolder(holder: ViewHolder<ViewDataBinding>, position: Int) {
+    override fun onBindViewHolder(holder: BaseViewHolder<ViewDataBinding>, position: Int) {
         val item = list?.get(position)
+
         if (holder.binding is ItemCarBinding) {
 
             holder.binding.item = item
-            holder.binding.listener=listener
+            holder.binding.listener = listener
 
         } else if (holder.binding is ItemCarCategoryBinding) {
 
@@ -35,11 +37,11 @@ class CarsAdapter(private val list: List<Car>?,private val listener:CarListener)
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder<ViewDataBinding> {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<ViewDataBinding> {
         val inflater = LayoutInflater.from(parent.context)
 
         return when (viewType) {
-            STATE_CAR -> ViewHolder(
+            STATE_CAR -> BaseViewHolder(
                 DataBindingUtil.inflate<ItemCarBinding>(
                     inflater,
                     R.layout.item_car,
@@ -48,7 +50,7 @@ class CarsAdapter(private val list: List<Car>?,private val listener:CarListener)
                 ).root
             )
 
-            STATE_ROOT -> ViewHolder(
+            STATE_ROOT -> BaseViewHolder(
                 DataBindingUtil.inflate<ItemCarCategoryBinding>(
                     inflater,
                     R.layout.item_car_category,
@@ -78,8 +80,4 @@ class CarsAdapter(private val list: List<Car>?,private val listener:CarListener)
     interface CarListener {
         fun onCarItemClick(item: Car?)
     }
-}
-
-class ViewHolder<out T>(view: View) : RecyclerView.ViewHolder(view) where T : ViewDataBinding {
-    val binding: T? = DataBindingUtil.bind(view)
 }

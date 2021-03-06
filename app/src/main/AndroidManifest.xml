@@ -3,7 +3,7 @@
     package="com.example.starlinetest">
 
     <application
-        android:name=".App"
+        android:name=".presentation.base.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StartlineTest">
         <activity
-            android:name="com.example.starlinetest.MainActivity"
+            android:name="com.example.starlinetest.presentation.base.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

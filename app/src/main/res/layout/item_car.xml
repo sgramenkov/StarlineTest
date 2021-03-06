@@ -5,7 +5,7 @@
 
         <variable
             name="listener"
-            type="com.example.starlinetest.presentation.cars.adapter.CarsAdapter.CarListener" />
+            type="com.example.starlinetest.presentation.modules.cars.adapter.CarsAdapter.CarListener" />
 
         <variable
             name="item"

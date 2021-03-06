@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.starlinetest.presentation.cars.viewmodel.CarsViewModel" />
+            type="com.example.starlinetest.presentation.modules.cars.viewmodel.CarsViewModel" />
     </data>
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,7 +13,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.cars.view.CarsFragment">
+        tools:context=".presentation.modules.cars.view.CarsFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv"
